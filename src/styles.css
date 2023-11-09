@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+.custom-container {
+  width: 100%;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+}
