@@ -10,7 +10,7 @@ export class StudentService {
   url!:string;
 
   constructor(private http: HttpClient) {
-    this.url = "https://b7b9-181-231-122-56.ngrok-free.app/student"
+    this.url = "https://7acf-2800-2245-9080-776-668-1c51-3c8d-fa31.ngrok-free.app/student"
   }
 
   getStudents(){

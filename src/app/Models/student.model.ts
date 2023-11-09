@@ -9,4 +9,5 @@ export class Student{
   gender: string = 'masculino';
   address: string = 'abc123';
   phone: number = 0;
+  selected?: boolean;
 }
