@@ -3,4 +3,10 @@
   width: 100%;
   max-width: 800px !important;
   margin: 0 auto !important;
+  text-align: center;
+}
+.form-container {
+  width: 100%;
+  max-width: 800px !important;
+  margin: 0 auto !important;
 }
