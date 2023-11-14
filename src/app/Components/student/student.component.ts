@@ -1,7 +1,7 @@
 import { Student } from './../../Models/student.model';
 import { StudentService } from './../../Services/student.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormsModule, FormControl, FormGroup, Validators, Form } from '@angular/forms';
 
 
 @Component({
@@ -14,30 +14,34 @@ export class StudentComponent implements OnInit {
   studentList:Student[]
   student:Student
 
-  addStudentForm:boolean=false
-  updateStudentForm:boolean=false
+  formStatus!:number
   formVisible:boolean=false
 
-  firstName = new FormControl('',(Validators.required));
-  lastName = new FormControl('', (Validators.required));
-  dni = new FormControl('', (Validators.required))
-  email = new FormControl('', [Validators.required, Validators.email]);
+
 
   constructor(private studentService:StudentService){
     this.studentList = new Array<Student>
     this.student = new Student()
   }
 
+  firstName!: string
+  lastName!: string
+  dni!: number
+  email!: string
+
 ngOnInit(){
   this.getStudents()
 }
+openUpdateForm(){
+  this.formStatus = 2
+}
 
-openForm(){
-  this.formVisible=true
+openAddForm(){
+  this.formStatus = 1
 }
 
 cancelForm(){
-  this.formVisible=false
+  this.formStatus = 0
 }
 
 getStudents(){
@@ -47,24 +51,16 @@ getStudents(){
 }
 
 addStudent(){
-  if (this.firstName.invalid || this.lastName.invalid || this.dni.invalid || this.email.invalid) {
-    alert("Invalid form.")
-    return;
-  }else{
-    var student = new Student()
-    student.firstName = this.firstName.value || ""
-    student.lastName = this.lastName.value || ""
-    student.dni = parseInt(this.dni.value ?? '0')
-    student.email = this.email.value || ""
-  }
+  var student = new Student()
+  student.firstName = this.firstName
+  student.lastName = this.lastName
+  student.dni = this.dni
+  student.email = this.email
+
   console.log(student)
     this.studentService.addStudent(student).subscribe(response => {
       console.log(response);
-      this.getStudents();
-      this.firstName.reset()
-      this.lastName.reset()
-      this.dni.reset()
-      this.email.reset()
+      this.getStudents()
     }, error => {
     console.error(error);
     });

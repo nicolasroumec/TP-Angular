@@ -23,7 +23,7 @@
             <td scope="row">{{student.lastName}}</td>
             <td scope="row">{{student.dni}}</td>
             <td scope="row">{{student.email}}</td>
-            <td><button type="button" class="btn btn-outline-warning btn-sm">Edit</button></td>
+            <td><button type="button" class="btn btn-outline-warning btn-sm" (click)="openUpdateForm()">Edit</button></td>
             <td><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></td>
           </tr>
         </tbody>
@@ -33,7 +33,7 @@
           <button type="button" class="btn btn-dark" (click)="getStudents()">Refresh</button>
         </div>
         <div class="col-lg-6">
-          <button type="button" class="btn btn btn-success" (click)="openForm()">Add student</button>
+          <button type="button" class="btn btn btn-success" (click)="openAddForm()">Add student</button>
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
     <br>
 
     <div>
-      <div style="margin-top:4%" *ngIf="formVisible" class="form-container">
+      <div style="margin-top:4%" *ngIf="formStatus === 1" class="form-container">
         <div class="card bg-dark text-white">
           <form style="margin: 3%">
             <div class="form-group">
@@ -50,27 +50,20 @@
             </div>
             <div class="form-group custom-input">
               <label>First name</label>
-              <input type="text" [formControl]="firstName" class="form-control" placeholder="Enter first name">
-              <div class="alert alert-danger mt-2" [hidden]="firstName.valid || firstName.pristine">Required field</div>
+              <input type="text" name="firstName" [(ngModel)]="firstName" placeholder="Enter first name">
             </div>
             <div class="form-group custom-input">
               <label>Last name</label>
-              <input type="text" [formControl]="lastName" class="form-control" placeholder="Enter last name">
-              <div class="alert alert-danger mt-2" [hidden]="lastName.valid || lastName.pristine">Required field</div>
+              <input type="text" name="lastName" [(ngModel)]="lastName" placeholder="Enter last name">
             </div>
             <div class="form-group custom-input">
               <label>DNI</label>
-              <input type="number" [formControl]="dni" class="form-control" placeholder="Enter DNI">
-              <div class="alert alert-danger mt-2" [hidden]="dni.valid || dni.pristine">Required field</div>
+              <input type="text" name="dni" [(ngModel)]="dni" placeholder="Enter DNI">
             </div>
             <div class="form-group custom-input">
               <label>Email</label>
-              <input type="email" [formControl]="email" class="form-control" placeholder="Enter email">
-              <div class="alert alert-danger mt-2" [hidden]="email.valid || email.pristine">
-                <span *ngIf="email.errors?.['required']">Required field</span>
-                <span *ngIf="email.errors?.['email']">Invalid email</span>
+              <input type="email" name="email" [(ngModel)]="email" placeholder="Enter email">
               </div>
-            </div>
             <button style="margin-top: 2%;" type="submit" class="btn btn-primary" (click)="addStudent()">Submit</button>
             <button style="margin-top: 2%; float:right" type="submit" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
           </form>
@@ -79,7 +72,7 @@
     </div>
 
     <div>
-      <div style="margin-top:4%" *ngIf="formVisible" class="form-container">
+      <div style="margin-top:4%" *ngIf="formStatus === 2" class="form-container">
         <div class="card bg-dark text-white">
           <form style="margin: 3%">
             <div class="form-group">
@@ -88,27 +81,20 @@
             </div>
             <div class="form-group custom-input">
               <label>First name</label>
-              <input type="text" [formControl]="firstName" [(ngModel)]="firstName" class="form-control" placeholder="Enter first name">
-              <div class="alert alert-danger mt-2" [hidden]="firstName.valid || firstName.pristine">Required field</div>
+              <input type="text" formControlName ="firstName2" class="form-control" placeholder="Enter first name">
             </div>
             <div class="form-group custom-input">
               <label>Last name</label>
-              <input type="text" [formControl]="lastName" [(ngModel)]="lastName" class="form-control" placeholder="Enter last name">
-              <div class="alert alert-danger mt-2" [hidden]="lastName.valid || lastName.pristine">Required field</div>
+              <input type="text" formControlName ="firstName2" class="form-control" placeholder="Enter last name">
             </div>
             <div class="form-group custom-input">
               <label>DNI</label>
-              <input type="number" [formControl]="dni" [(ngModel)]="dni" class="form-control" placeholder="Enter DNI">
-              <div class="alert alert-danger mt-2" [hidden]="dni.valid || dni.pristine">Required field</div>
+              <input type="number" formControlName ="firstName2" class="form-control" placeholder="Enter DNI">
             </div>
             <div class="form-group custom-input">
               <label>Email</label>
-              <input type="email" [formControl]="email" [(ngModel)]="email" class="form-control" placeholder="Enter email">
-              <div class="alert alert-danger mt-2" [hidden]="email.valid || email.pristine">
-                <span *ngIf="email.errors?.['required']">Required field</span>
-                <span *ngIf="email.errors?.['email']">Invalid email</span>
+              <input type="email" formControlName ="firstName2" class="form-control" placeholder="Enter email">
               </div>
-            </div>
             <button style="margin-top: 2%;" type="submit" class="btn btn-primary" (click)="addStudent()">Submit</button>
             <button style="margin-top: 2%; float:right" type="submit" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
           </form>
