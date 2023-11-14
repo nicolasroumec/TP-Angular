@@ -10,7 +10,7 @@ export class StudentService {
   url!:string;
 
   constructor(private http: HttpClient) {
-    this.url = "https://7acf-2800-2245-9080-776-668-1c51-3c8d-fa31.ngrok-free.app/student"
+    this.url = "https://backend-idra-production.up.railway.app/student"
   }
 
   getStudents(){
@@ -18,7 +18,7 @@ export class StudentService {
   }
 
   addStudent(student:Student){
-    return this.http.post(this.url + "/", student)
+    return this.http.post(this.url, student)
   }
 
   updateStudent(id:number, student:Student){

@@ -1,61 +1,35 @@
-import { Student } from 'src/app/Models/student.model';
+import { Student } from './../../Models/student.model';
 import { StudentService } from './../../Services/student.service';
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-export class StudentComponent {
+export class StudentComponent implements OnInit {
 
-  formVisible:boolean=false
   studentList:Student[]
+  student:Student
 
-  student1:Student
-  student2:Student
-  student3:Student
-  student4:Student
+  addStudentForm:boolean=false
+  updateStudentForm:boolean=false
+  formVisible:boolean=false
+
+  firstName = new FormControl('',(Validators.required));
+  lastName = new FormControl('', (Validators.required));
+  dni = new FormControl('', (Validators.required))
+  email = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(private studentService:StudentService){
     this.studentList = new Array<Student>
-    this.student1 = new Student
-    this.student2 = new Student
-    this.student3 = new Student
-    this.student4 = new Student
-
-    this.student1.id = 1
-    this.student1.dni = 41854405
-    this.student1.firstName = 'Nicolas'
-    this.student1.lastName = 'Roumec'
-    this.student1.email = 'nicolasroumec@hotmail.com'
-
-    this.student2.id = 2
-    this.student2.dni = 41854405
-    this.student2.firstName = 'Nicolas'
-    this.student2.lastName = 'Roumec'
-    this.student2.email = 'nicolasroumec@hotmail.com'
-
-    this.student3.id = 3
-    this.student3.dni = 41854405
-    this.student3.firstName = 'Nicolas'
-    this.student3.lastName = 'Roumec'
-    this.student3.email = 'nicolasroumec@hotmail.com'
-
-    this.student4.id = 4
-    this.student4.dni = 41854405
-    this.student4.firstName = 'Nicolas'
-    this.student4.lastName = 'Roumec'
-    this.student4.email = 'cristian@hotmail.com'
-
-    this.studentList.push(this.student1)
-    this.studentList.push(this.student2)
-    this.studentList.push(this.student3)
-    this.studentList.push(this.student4)
-
+    this.student = new Student()
   }
 
 ngOnInit(){
+  this.getStudents()
 }
 
 openForm(){
@@ -70,6 +44,34 @@ getStudents(){
   this.studentService.getStudents().subscribe(response =>{
     this.studentList = response as Student[];
   })
+}
+
+addStudent(){
+  if (this.firstName.invalid || this.lastName.invalid || this.dni.invalid || this.email.invalid) {
+    alert("Invalid form.")
+    return;
+  }else{
+    var student = new Student()
+    student.firstName = this.firstName.value || ""
+    student.lastName = this.lastName.value || ""
+    student.dni = parseInt(this.dni.value ?? '0')
+    student.email = this.email.value || ""
+  }
+  console.log(student)
+    this.studentService.addStudent(student).subscribe(response => {
+      console.log(response);
+      this.getStudents();
+      this.firstName.reset()
+      this.lastName.reset()
+      this.dni.reset()
+      this.email.reset()
+    }, error => {
+    console.error(error);
+    });
+}
+
+updateStudent(){
 
 }
 }
+
