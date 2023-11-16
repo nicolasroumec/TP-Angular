@@ -1,6 +1,6 @@
 <body>
-  <div class="container">
-    <div class="custom-container col-lg-6 offset-lg-6">
+  <div class="custom-container">
+    <div class="table-container">
       <div class="title mb-2">
         <h4>STUDENTS LIST</h4>
       </div>
@@ -40,28 +40,29 @@
 
     <br>
 
-    <div>
-      <div style="margin-top:4%" *ngIf="formStatus === 1" class="form-container">
+    <div class="form-container">
+      <div *ngIf="formStatus === 1" >
         <div class="card bg-dark text-white">
+          <h4>ADD STUDENT</h4>
           <form style="margin: 3%">
-            <div class="form-group">
-              <label>ID</label>
-              <div class="custom-input"></div>
+            <div class="input">
+              <label>ID</label><br>
+              <input type="text" name="toUpdateId" [(ngModel)]="id"  readonly>
             </div>
-            <div class="form-group custom-input">
-              <label>First name</label>
+            <div class="input">
+              <label>First name</label><br>
               <input type="text" name="firstName" [(ngModel)]="firstName" placeholder="Enter first name">
             </div>
-            <div class="form-group custom-input">
-              <label>Last name</label>
+            <div class="input">
+              <label>Last name</label><br>
               <input type="text" name="lastName" [(ngModel)]="lastName" placeholder="Enter last name">
             </div>
-            <div class="form-group custom-input">
-              <label>DNI</label>
+            <div class="input">
+              <label>DNI</label><br>
               <input type="text" name="dni" [(ngModel)]="dni" placeholder="Enter DNI">
             </div>
-            <div class="form-group custom-input">
-              <label>Email</label>
+            <div class="input">
+              <label>Email</label><br>
               <input type="email" name="email" [(ngModel)]="email" placeholder="Enter email">
               </div>
             <button style="margin-top: 2%;" type="submit" class="btn btn-primary" (click)="addStudent()">Submit</button>
@@ -71,29 +72,29 @@
       </div>
     </div>
 
-    <div>
-      <div style="margin-top:4%" *ngIf="formStatus === 2" class="form-container">
+    <div class="form-container">
+      <div *ngIf="formStatus === 2" >
         <div class="card bg-dark text-white">
-          <h4>Update student</h4>
+          <h4>UPDATE STUDENT</h4>
           <form style="margin: 3%">
-            <div class="form-group">
-              <label>ID</label>
+            <div class="input">
+              <label>ID</label><br>
               <input type="text" name="toUpdateId" [(ngModel)]="toUpdateId"  readonly>
             </div>
-            <div class="form-group custom-input">
-              <label>First name</label>
+            <div class="input">
+              <label>First name</label><br>
               <input type="text" name="toUpdateFirstName" [(ngModel)]="toUpdateFirstName" placeholder="Enter first name">
             </div>
-            <div class="form-group custom-input">
-              <label>Last name</label>
+            <div class="input">
+              <label>Last name</label><br>
               <input type="text" name="toUpdateLastName" [(ngModel)]="toUpdateLastName" placeholder="Enter last name">
             </div>
-            <div class="form-group custom-input">
-              <label>DNI</label>
-              <input type="number" name="toUpdateDni" [(ngModel)]="toUpdateDni" placeholder="Enter DNI">
+            <div class="input">
+              <label>DNI</label><br>
+              <input type="text" name="toUpdateDni" [(ngModel)]="toUpdateDni" placeholder="Enter DNI">
             </div>
-            <div class="form-group custom-input">
-              <label>Email</label>
+            <div class="input">
+              <label>Email</label><br>
               <input type="email" name="toUpdateEmail" [(ngModel)]="toUpdateEmail" placeholder="Enter email">
               </div>
             <button style="margin-top: 2%;" type="submit" class="btn btn-primary" (click)="updateStudent()">Submit</button>

@@ -6,15 +6,21 @@ body{
   height: 100vh;
 }
 .custom-container {
-  width: 100%;
-  max-width: 800px !important;
-  margin: 0 auto; 
+  padding:0 100px;
+}
+.table-container {
+  width: 70%;
+  padding-left: 20px;
+  float: left;
 }
 .form-container {
-  width: 100%;
-  max-width: 800px !important;
-  margin: 0 auto !important;
+  width: 25%;
+  padding-right: 20px;
+  float:right;
+  padding-top: 15px;
 }
-tr.selected {
-  background-color: #ccc;
+input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
 }

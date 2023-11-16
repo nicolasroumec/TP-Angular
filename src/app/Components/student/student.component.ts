@@ -16,9 +16,7 @@ export class StudentComponent implements OnInit {
 
   formStatus!:number
   formVisible:boolean=false
-
-
-
+  
   constructor(private studentService:StudentService){
     this.studentList = new Array<Student>()
     this.student = new Student()
@@ -30,15 +28,11 @@ export class StudentComponent implements OnInit {
   dni!: number
   email!: string
 
-
   toUpdateId!: number
   toUpdateFirstName!: string
   toUpdateLastName!: string
   toUpdateDni!: number
   toUpdateEmail!: string
-
-
-  selectedStudent:Student = new Student()
 
 ngOnInit(){
   this.getStudents()
@@ -68,7 +62,6 @@ addStudent(){
   student.dni = this.dni
   student.email = this.email
 
-
   console.log(student)
     this.studentService.addStudent(student).subscribe(response => {
       console.log(response);
@@ -80,15 +73,12 @@ addStudent(){
 }
 
 updateStudent(){
-
   var student = new Student()
-
-    student.id = this.toUpdateId
-    student.dni = this.toUpdateDni,
-    student.lastName = this.toUpdateLastName,
-    student.firstName = this.toUpdateFirstName,
-    student.email = this.toUpdateEmail,
-
+  student.id = this.toUpdateId
+  student.dni = this.toUpdateDni,
+  student.lastName = this.toUpdateLastName,
+  student.firstName = this.toUpdateFirstName,
+  student.email = this.toUpdateEmail,
 
   console.log(student)
     this.studentService.updateStudent(student).subscribe(response => {
@@ -105,7 +95,6 @@ selectStudent(student:Student){
   this.toUpdateFirstName = student.firstName
   this.toUpdateLastName = student.lastName
   this.toUpdateEmail = student.email
-  
   }
 
 deleteStudent(student:Student){
