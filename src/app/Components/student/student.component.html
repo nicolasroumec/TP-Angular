@@ -23,7 +23,7 @@
             <td scope="row">{{student.lastName}}</td>
             <td scope="row">{{student.dni}}</td>
             <td scope="row">{{student.email}}</td>
-            <td><button type="button" class="btn btn-outline-warning btn-sm" (click)="openUpdateForm()">Edit</button></td>
+            <td><button type="button" class="btn btn-outline-warning btn-sm" (click)="openUpdateForm()" (click)="selectStudent(student)">Edit</button></td>
             <td><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></td>
           </tr>
         </tbody>
@@ -74,28 +74,29 @@
     <div>
       <div style="margin-top:4%" *ngIf="formStatus === 2" class="form-container">
         <div class="card bg-dark text-white">
+          <h4>Update student</h4>
           <form style="margin: 3%">
             <div class="form-group">
               <label>ID</label>
-              <div class="custom-input"></div>
+              <input type="text" name="toUpdateId" [(ngModel)]="toUpdateId"  readonly>
             </div>
             <div class="form-group custom-input">
               <label>First name</label>
-              <input type="text" formControlName ="firstName2" class="form-control" placeholder="Enter first name">
+              <input type="text" name="toUpdateFirstName" [(ngModel)]="toUpdateFirstName" placeholder="Enter first name">
             </div>
             <div class="form-group custom-input">
               <label>Last name</label>
-              <input type="text" formControlName ="firstName2" class="form-control" placeholder="Enter last name">
+              <input type="text" name="toUpdateLastName" [(ngModel)]="toUpdateLastName" placeholder="Enter last name">
             </div>
             <div class="form-group custom-input">
               <label>DNI</label>
-              <input type="number" formControlName ="firstName2" class="form-control" placeholder="Enter DNI">
+              <input type="number" name="toUpdateDni" [(ngModel)]="toUpdateDni" placeholder="Enter DNI">
             </div>
             <div class="form-group custom-input">
               <label>Email</label>
-              <input type="email" formControlName ="firstName2" class="form-control" placeholder="Enter email">
+              <input type="email" name="toUpdateEmail" [(ngModel)]="toUpdateEmail" placeholder="Enter email">
               </div>
-            <button style="margin-top: 2%;" type="submit" class="btn btn-primary" (click)="addStudent()">Submit</button>
+            <button style="margin-top: 2%;" type="submit" class="btn btn-primary" (click)="updateStudent()">Submit</button>
             <button style="margin-top: 2%; float:right" type="submit" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
           </form>
         </div>
