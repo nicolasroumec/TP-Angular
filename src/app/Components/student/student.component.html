@@ -24,7 +24,7 @@
             <td scope="row">{{student.dni}}</td>
             <td scope="row">{{student.email}}</td>
             <td><button type="button" class="btn btn-outline-warning btn-sm" (click)="openUpdateForm()" (click)="selectStudent(student)">Edit</button></td>
-            <td><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></td>
+            <td><button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteStudent(student)">Delete</button></td>
           </tr>
         </tbody>
       </table>

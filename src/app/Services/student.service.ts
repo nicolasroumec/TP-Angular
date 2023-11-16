@@ -25,7 +25,7 @@ export class StudentService {
     return this.http.post(this.url + '/' + student.id + '/update', student)
   }
 
-  deleteStudent(id:number, student:Student){
-    return this.http.post(this.url + id + "/delete", student)
+  deleteStudent(student:Student){
+    return this.http.post(this.url + '/' + student.id + "/delete", student)
   }
 }
